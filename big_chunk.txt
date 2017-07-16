@@ -1,0 +1,174 @@
+Java Developer/ Full Stack- Dallas/ Irving- Tx
+Employers Bench - Irving, TX
+Contract
+Contact- Monika Chopra
+
+Note- looking for W2/ 1099 consultants only
+
+Java Developer/ Full Stack- Dallas/ Irving- Tx
+
+Contract- 6months +
+
+Candidate must have Java/J2EE application UI design and development
+Expertise in Spring Framework, JSP, JavaScript, Oracle, JDBC, WebLogic Server, Eclipse IDE
+Experience with BI tools such as OBIEE or Tableau preferred
+SQL development under Linux operating environment
+Extensive knowledge of CSS usage and implementation
+Position requires the ability to effectively manage competing priorities
+Strong verbal and written communication skills
+Working as part of a team as well as independently
+Ability to identify issues to leads and/or management while providing possible solutions
+Education and Experience:
+
+BS in Computer Science preferred with min 5 years’ experience
+Knowledge of telecommunications industry and networking technologies is good to have
+Job Type: Contract
+
+Required experience:
+
+Java Developer: 5 years
+
+
+Core Java Developer
+Droisys Inc. - Dallas, TX
+$110,000 - $115,000 a year - Full-time, Contract
+Title
+: Sr.
+Core Java Developer
+
+Position ID : 50920
+
+Location
+: Fort
+Worth TX
+
+Duration
+:
+Fulltime / Contract ( Both
+Options )
+
+Interview
+: Phone
+and Skype
+
+Rate
+:
+$70/hr.
+
+Salary
+: $110-115K/Annum
+
+Positions
+: 2
+
+Job Description:
+Responsibilities
+
+·
+Modify
+and write programs, primarily targeting core java.
+
+·
+Estimate
+programming schedules and report on progress
+
+·
+Write
+automated software quality assurance tests and participate in code reviews
+Required
+
+Technical Skills
+
+·
+Bachelor⿿s
+degree or equivalent experience
+
+·
+Experience
+with Jenkins 2.0 pipeline and various plug-ins Ruby on Rails, JavaScript, and
+Linux
+
+·
+Experience
+with cloud development and deployments
+
+·
+Must
+Have Java 1.8 / J2EE, Spring boot.
+
+·
+Hands
+on with application deployment process
+
+·
+Understanding
+of DevOps practices which involves Continuous Integration, Delivery and
+Deployment
+
+·
+Experienced
+Java developers with good knowledge of working with open source technologies
+with focus on good coding, software engineering principle and automated
+testing.
+
+Optional Technical
+Skills
+
+·
+Experience
+with MySQL, DB2, or Microsoft SQL Server
+
+·
+Experience
+with Scalr, RSpec, NewRelic, Splunk, Git, Artifactory, VictorOps
+
+·
+Experience
+on the IBM iSeries
+
+
+
+
+Java Developer
+Lumen Solutions - Washington, DC
+Contract
+Hi Folks,
+
+We have very urgent Requirement with our Direct client, IF you are available in job market Kindly share your resume with expected Pay Rate. Your response is highly appreciated.
+
+PLEASE ONLY SHARE GC/US Citizen
+
+JOB ROLE: Java Developer
+
+LOCATION: Washington, DC
+
+Duration: 6 Months contract to hire
+
+Requisition Details
+
+The Service Benefit Plan Administrative Service Corporation (SBPASC) needs four Sr. Java developer contractors. The selected individuals will be working on full-lifecycle, scrum-team development tasks and maintenance activities related to our eService and Digital eXperience programs. Responsibilites include, but are not limited to:
+
+Working with architects and technical leads on software design, prototyping, and development
+Developing software per architecture design and industry best practices
+Unit & integration testing of developed code
+Participating in code reviews
+Documenting system changes
+Mentoring more junior resources and enforcing software development best practices
+Operational support and maintenance programming
+Required Skills:
+
+This position requires a BS in computer science or equivalent degree, and 6+ years of professional software development experience using Enterprise Java technologies. Specific requirements include, but are not limited to:
+
+Strong, hands-on experience using the latest Java/JEE technologies
+Experience with open source Frameworks including Spring MVC, Spring Batch, Spring Boot, Hibernate, MyBatis
+Experience with both RESTful and SOAP web services
+Familiarity with DevOps technologies, including Jenkins
+Familiarity with various UI frameworks like JQuery, AJAX, and AngularJS
+Excellent troubleshooting, analytical and problem solving skills
+Comfort in working within a unix environment (AIX)
+Independent, self-starter, & team player
+Software & Tools:
+
+Java/JEE, Spring MVC, Spring Batch, Spring Boot, Spring Security, Hibernate, MyBatis, AngularJS, REST and SOAP Web Services, Git, Maven, Jenkins, Junit and TestNG, Maven, Ant, XML, MyEclipse, Unix
+
+Job Type: Contract
