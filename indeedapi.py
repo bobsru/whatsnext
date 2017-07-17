@@ -11,8 +11,9 @@ from bs4 import BeautifulSoup # For HTML parsing
 Function for web scraping
 '''
 
+import nltk
+nltk.data.path.append("/var/task/nltk_data")
 
-from nltk.corpus import stopwords
 def text_cleaner(website):
     '''
     Inputs: a URL to investigate
@@ -60,7 +61,7 @@ def text_cleaner(website):
     text = text.lower().split()  # Go to lower case and split them apart
 
 
-    stop_words = set(stopwords.words("english")) # Filter out any stop words
+    stop_words = set(nltk.corpus.stopwords.words("english")) # Filter out any stop words
     text = [w for w in text if not w in stop_words]
 
     text = list(set(text)) # Last, just get the set of these. Ignore counts (we are just looking at whether a term existed

@@ -6,3 +6,4 @@ include/
 lib/
 pip-selfcheck.json
 build_scripts/output/
+nltk_data/
