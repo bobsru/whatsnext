@@ -4,7 +4,7 @@ __author__ = 'srujanabobba'
 from indeed import IndeedClient
 import urllib2
 from bs4 import BeautifulSoup # For HTML parsing
-import re
+
 
 
 '''
@@ -15,7 +15,6 @@ Function for web scraping
 from nltk.corpus import stopwords
 def text_cleaner(website):
     '''
-    This function just cleans up the raw html so that I can look at it.
     Inputs: a URL to investigate
     Outputs: Cleaned text only
     '''
@@ -57,17 +56,12 @@ def text_cleaner(website):
         return                                                         # an exception
 
 
-    text = re.sub("[^a-zA-Z.+3]"," ", text)  # Now get rid of any terms that aren't words (include 3 for d3.js)
-                                                # Also include + for C++
-
 
     text = text.lower().split()  # Go to lower case and split them apart
 
 
     stop_words = set(stopwords.words("english")) # Filter out any stop words
     text = [w for w in text if not w in stop_words]
-
-
 
     text = list(set(text)) # Last, just get the set of these. Ignore counts (we are just looking at whether a term existed
                             # or not on the website)

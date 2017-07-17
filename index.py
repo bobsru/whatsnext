@@ -6,7 +6,7 @@ import parse_text
 import boto3
 import sys
 import os
-
+import json
 
 
 # Get the input skills
@@ -52,4 +52,8 @@ for _word in parsed_words:
 final_skills = dict((k, v) for k, v in tag_results.items() if v >= 10000)
 
 print ','.join(final_skills.iterkeys())
+
+def lambda_handler(event, context):
+    print("Received event: " + json.dumps(event, indent=2))
+
 

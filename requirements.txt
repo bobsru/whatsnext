@@ -1,6 +1,6 @@
 indeed
 Py-StackExchange
-ntlk
+nltk
 bs4
 boto3
 pyyaml
