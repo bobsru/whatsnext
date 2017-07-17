@@ -1,18 +1,16 @@
 __author__ = 'srujanabobba'
 
-import stackexchange
+
 import indeedapi
 import parse_text
-import httplib
-import json
-import time
+import boto3
+import sys
+import os
 
-import urllib
-# Set the API KEY for StackOverflow
-so = stackexchange.Site(stackexchange.StackOverflow, "F3wbtgR7YlCH7he7VZuiUg((",impose_throttling=False)
+
 
 # Get the input skills
-input_skills = ['jenkins,vmware,continuous integration']
+input_skills = ['Infrastructure Engineer']
 
 # Send the input skills to indeed search and get the text as input file.
 words = indeedapi.get_job_description(input_skills)
@@ -20,30 +18,38 @@ words = indeedapi.get_job_description(input_skills)
 # Get the words from the input file and parse it
 tag_results = {}
 parsed_words = parse_text.parser(words)
-#print parsed_words
+
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('so_tags')
+# Check value of i and sleep for a second.
 i=0
 for _word in parsed_words:
+    '''
     i+=1
-    if(i==50):
-        time.sleep(30)
+    if(i==100):
+        time.sleep(1)
         i=0
+    '''
     try:
         _word = _word.replace('.','').strip()
-        tag_info = so.tags(inname=_word.encode('utf-8'),sort='popular')
+        response = table.get_item(
+            Key={
+                'tag_name': _word
+            }
+        )
+        if 'Item' in response:
+            tag_info = response['Item']
+            tag_results[tag_info['tag_name']] = tag_info['tag_count']
 
-        for each_tag in tag_info.items:
-            if each_tag.name in parsed_words:
-                tag_results[each_tag.name] = each_tag.count
-
-    except httplib.BadStatusLine:
-        print 'Got badstatusline error for ',_word
-
-        pass
-    except stackexchange.core.StackExchangeError:
-        print 'Got stackexchange error for ',_word
+    except Exception as e:
+        print 'Got error for word: ',_word
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        print(exc_type, fname, exc_tb.tb_lineno)
         pass
 
 final_skills = dict((k, v) for k, v in tag_results.items() if v >= 10000)
-#print json.dumps(final_skills,indent=4)
+
 print ','.join(final_skills.iterkeys())
 
