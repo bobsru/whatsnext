@@ -98,63 +98,105 @@ def get_related_skills(intent_request):
     :param intent_request:
     :return: related skills
     """
-
+    print intent_request['currentIntent']['slots']
     input_skills = intent_request['currentIntent']['slots']['Skill']
-    #input_skills = ['Infrastructure Engineer']
+    learn = None
+    if 'Learn' in intent_request['currentIntent']['slots']:
+        learn = intent_request['currentIntent']['slots']['Learn']
+
 
     output_session_attributes = intent_request['sessionAttributes'] if intent_request['sessionAttributes'] is not None else {}
 
-    # Send the input skills to indeed search and get the text as input file.
-    words = indeedapi.get_job_description(input_skills)
-    #print words
-    # Get the words from the input file and parse it
-    tag_results = {}
-    parsed_words = parse_text.parser(words)
 
 
-    dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('so_tags')
-    # Check value of i and sleep for a second.
-    i=0
-    for _word in parsed_words:
-        '''
-        i+=1
-        if(i==100):
-            time.sleep(1)
-            i=0
-        '''
-        try:
-            _word = _word.replace('.','').strip()
-            response = table.get_item(
-                Key={
-                    'tag_name': _word
+
+
+    if input_skills and learn is None:
+
+        # Send the input skills to indeed search and get the text as input file.
+        words = indeedapi.get_job_description(input_skills)
+        #print words
+        # Get the words from the input file and parse it
+        tag_results = {}
+        parsed_words = parse_text.parser(words)
+
+
+        dynamodb = boto3.resource('dynamodb')
+        table = dynamodb.Table('so_tags')
+        # Check value of i and sleep for a second.
+        i=0
+        for _word in parsed_words:
+            '''
+            i+=1
+            if(i==100):
+                time.sleep(1)
+                i=0
+            '''
+            try:
+                _word = _word.replace('.','').strip()
+                response = table.get_item(
+                    Key={
+                        'tag_name': _word
+                    }
+                )
+                if 'Item' in response:
+                    tag_info = response['Item']
+                    if 'tag_skip' in tag_info:
+                        if tag_info['tag_skip'] != 'true':
+                            tag_results[tag_info['tag_name']] = tag_info['tag_count']
+
+            except Exception as e:
+                print 'Got error for word: ',_word
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)
+                pass
+
+        final_skills = dict((k, v) for k, v in tag_results.items() if v >= 10000)
+
+        employer_skills =  ','.join(final_skills.iterkeys())
+        print employer_skills
+
+
+
+        build_options = [
+            {'text': 'Yes', 'value': 'yes'},
+            {'text': 'No', 'value': 'no'}
+        ]
+        return elicit_slot(
+            output_session_attributes,
+            intent_request['currentIntent']['name'],
+            intent_request['currentIntent']['slots'],
+            'Learn',
+            {'contentType': 'PlainText', 'content': 'Here are the skills employers are looking for ' + employer_skills},
+            build_response_card(
+                'Learn today', 'Do you want to know more about where you can learn these courses or concepts?',
+                build_options
+            )
+        )
+
+    else:
+        if learn == 'yes':
+            return close(
+                output_session_attributes,
+                'Fulfilled',
+                {
+                    'contentType': 'PlainText',
+                    'content': 'Great! Here are the websites to learn. \nwww.udemy.com \nwww.coursera.com'
                 }
             )
-            if 'Item' in response:
-                tag_info = response['Item']
-                if tag_info['tag_skip'] != 'true':
-                    tag_results[tag_info['tag_name']] = tag_info['tag_count']
+        else:
+            return close(
+                output_session_attributes,
+                'Fulfilled',
+                {
+                    'contentType': 'PlainText',
+                    'content': 'OK! Thank you for using WhatsNext bot. Have a great learning!'
+                }
+            )
 
-        except Exception as e:
-            print 'Got error for word: ',_word
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            print(exc_type, fname, exc_tb.tb_lineno)
-            pass
 
-    final_skills = dict((k, v) for k, v in tag_results.items() if v >= 10000)
 
-    employer_skills =  ','.join(final_skills.iterkeys())
-    print employer_skills
-
-    return close(
-        output_session_attributes,
-        'Fulfilled',
-        {
-            'contentType': 'PlainText',
-            'content': 'Okay. Here are the tools or concepts that employers are looking for {}'.format(employer_skills)
-        }
-    )
 
 
 
@@ -186,7 +228,6 @@ def lambda_handler(event, context):
     The JSON body of the request is provided in the event slot.
     """
     # By default, treat the user request as coming from the America/Chicago time zone.
-    print 'I am here. Hello!'
     os.environ['TZ'] = 'America/Chicago'
     time.tzset()
     logger.debug('event.bot.name={}'.format(event['bot']['name']))

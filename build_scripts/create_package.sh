@@ -8,3 +8,4 @@ cp -rf ../lib/python2.7/site-packages/ output/
 cd output
 zip -r -X "deployment.zip" *
 aws s3 cp deployment.zip s3://whatsnext-s3/deployment.zip
+echo 'uploaded to s3 at location: https://s3.amazonaws.com/whatsnext-s3/deployment.zip'
