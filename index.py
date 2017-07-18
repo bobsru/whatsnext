@@ -132,7 +132,8 @@ def get_related_skills(intent_request):
             )
             if 'Item' in response:
                 tag_info = response['Item']
-                tag_results[tag_info['tag_name']] = tag_info['tag_count']
+                if tag_info['tag_skip'] != 'true':
+                    tag_results[tag_info['tag_name']] = tag_info['tag_count']
 
         except Exception as e:
             print 'Got error for word: ',_word
@@ -151,7 +152,7 @@ def get_related_skills(intent_request):
         'Fulfilled',
         {
             'contentType': 'PlainText',
-            'content': 'Okay. Here are the skills that employers are looking for {}'.format(employer_skills)
+            'content': 'Okay. Here are the tools or concepts that employers are looking for {}'.format(employer_skills)
         }
     )
 
