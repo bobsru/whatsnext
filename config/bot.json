@@ -1,0 +1,135 @@
+{
+	"name": "WhatsNext",
+	"description": null,
+	"intents": [{
+		"intentName": "ImproveIntent",
+		"intentVersion": "8"
+	}],
+	"clarificationPrompt": {
+		"messages": [{
+			"contentType": "PlainText",
+			"content": "Hi! What would you like to do today?"
+		}],
+		"maxAttempts": 5,
+		"responseCard": null
+	},
+	"abortStatement": {
+		"messages": [{
+			"contentType": "PlainText",
+			"content": "Sorry, I could not understand. Goodbye."
+		}],
+		"responseCard": null
+	},
+	"status": "READY",
+	"failureReason": null,
+	"lastUpdatedDate": "2017-07-18T23:12:10.089Z",
+	"createdDate": "2017-07-11T03:27:32.412Z",
+	"idleSessionTTLInSeconds": 300,
+	"voiceId": "0",
+	"checksum": "34835e41-d820-4664-83f7-1a6fadc7a988",
+	"version": "$LATEST",
+	"locale": "en-US",
+	"childDirected": false,
+	"dependencies": {
+		"intents": [{
+			"name": "ImproveIntent",
+			"description": null,
+			"slots": [{
+				"name": "Skill",
+				"description": null,
+				"slotConstraint": "Required",
+				"slotType": "SkillSlot",
+				"slotTypeVersion": "1",
+				"valueElicitationPrompt": {
+					"messages": [{
+						"contentType": "PlainText",
+						"content": "What Tools or Languages do you know?"
+					}],
+					"maxAttempts": 2,
+					"responseCard": null
+				},
+				"priority": 1,
+				"sampleUtterances": [],
+				"responseCard": null
+			}, {
+				"name": "Learn",
+				"description": null,
+				"slotConstraint": "Optional",
+				"slotType": "LearnSlot",
+				"slotTypeVersion": "1",
+				"valueElicitationPrompt": {
+					"messages": [{
+						"contentType": "PlainText",
+						"content": "Do you want to start learning right away?"
+					}],
+					"maxAttempts": 2,
+					"responseCard": null
+				},
+				"priority": 2,
+				"sampleUtterances": [],
+				"responseCard": null
+			}],
+			"sampleUtterances": ["Can I get some help with courses or concepts", "I would like to improve my skills", "I have free time and want to improve my skills", "What are the skills that are in demand", "I need help with my skills"],
+			"conclusionStatement": {
+				"messages": [{
+					"contentType": "PlainText",
+					"content": "Thanks for trying our WhatsNext bot! Have an awesome day!!!"
+				}],
+				"responseCard": null
+			},
+			"fulfillmentActivity": {
+				"type": "CodeHook",
+				"codeHook": {
+					"uri": "arn:aws:lambda:us-east-1:575367338161:function:whatsnext-python",
+					"messageVersion": "1.0"
+				}
+			},
+			"parentIntentSignature": null,
+			"lastUpdatedDate": "2017-07-18T23:11:46.253Z",
+			"createdDate": "2017-07-18T23:11:46.253Z",
+			"version": "8",
+			"checksum": "c54e174b-e1f4-4c51-a52a-325afb07eb21"
+		}],
+		"slotTypes": [{
+			"name": "SkillSlot",
+			"description": "known skills",
+			"enumerationValues": [{
+				"value": "Jenkins"
+			}, {
+				"value": "C#"
+			}, {
+				"value": "IntelliJ"
+			}, {
+				"value": "Java"
+			}, {
+				"value": "CD"
+			}, {
+				"value": "C++"
+			}, {
+				"value": "SysOps"
+			}, {
+				"value": "CI"
+			}, {
+				"value": "Artifactory"
+			}, {
+				"value": "Devops"
+			}, {
+				"value": "Microservices"
+			}],
+			"lastUpdatedDate": "2017-07-11T03:44:40.912Z",
+			"createdDate": "2017-07-11T03:44:40.912Z",
+			"version": "1",
+			"checksum": null
+		}, {
+			"name": "LearnSlot",
+			"description": "Get available sites to learn",
+			"enumerationValues": [{
+				"value": "Yes"
+			}],
+			"lastUpdatedDate": "2017-07-18T21:41:11.117Z",
+			"createdDate": "2017-07-18T21:41:11.117Z",
+			"version": "1",
+			"checksum": null
+		}]
+	}
+}
